@@ -1,0 +1,17 @@
+<div>index1</div>
+<script>
+  // 接收domain1的数据
+  window.addEventListener(
+    'message',
+    function (e) {
+      alert('data from 8080 ---> ' + e.data)
+      var data = JSON.parse(e.data)
+      if (data) {
+        data.number = 16
+        // 处理后再发回 8080
+        window.parent.postMessage(JSON.stringify(data), '*')
+      }
+    },
+    false
+  )
+</script>
